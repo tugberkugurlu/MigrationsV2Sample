@@ -3,6 +3,14 @@ CREATE TABLE [dbo].[People]
 [Id] [int] NOT NULL IDENTITY(1, 1),
 [Name] [nvarchar] (50) COLLATE Latin1_General_CI_AS NOT NULL
 ) ON [PRIMARY]
+CREATE FULLTEXT INDEX ON [dbo].[People] KEY INDEX [PK_People] ON [PeopleFTS]
 GO
+
+ALTER FULLTEXT INDEX ON [dbo].[People] ADD ([Name] LANGUAGE 1033)
+GO
+
+ALTER FULLTEXT INDEX ON [dbo].[People] ENABLE
+GO
+
 ALTER TABLE [dbo].[People] ADD CONSTRAINT [PK_People] PRIMARY KEY CLUSTERED  ([Id]) ON [PRIMARY]
 GO
